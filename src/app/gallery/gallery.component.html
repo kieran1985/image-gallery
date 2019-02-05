@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+  <button
+    class="btn btn-lg btn-info m-2"
+    [class.active]="filterBy == 'all'"
+    (click)="filterBy = 'all'"
+  >
+    All
+  </button>
+  <button
+    class="btn btn-lg btn-info m-2"
+    [class.active]="filterBy == 'boats'"
+    (click)="filterBy = 'boats'"
+  >
+    Boats
+  </button>
+  <button
+    class="btn btn-lg btn-info m-2"
+    [class.active]="filterBy == 'cats'"
+    (click)="filterBy = 'cats'"
+  >
+    Cats
+  </button>
+</div>
+<div class="row mt-5">
+  <div class="card-columns">
+    <div
+      class="card"
+      *ngFor="let image of (visibleImages | imageFilter: filterBy)"
+    >
+      <div>
+        <img src="{{ image.url }}" class="card-img-top" />
+        <div class="card-body">
+          <h5 class="card-title">
+            <a [routerLink]="['/image', image.id]">{{ image.caption }}</a>
+          </h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <ul id="thumbnailsList">
+    <li *ngFor="let image of (visibleImages | imageFilter: filterBy)">
+      <a [routerLink]="['/image', image.id]">
+        <img
+          src="{{ image.url }}"
+          class="thumbnail"
+          width="200"
+          height="auto"
+        />
+      </a>
+    </li>
+  </ul> -->
+</div>
